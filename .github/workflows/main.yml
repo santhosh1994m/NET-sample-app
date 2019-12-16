@@ -12,12 +12,6 @@ jobs:
       with:
         dotnet-version: 2.2.108 # Replace with specific dotnet core versio
     # dotnet build and publish
-    - name: Build with dotnet
-      working-directory: ViewEnvironment
-      run: dotnet build D:\a\NET-sample-app\NET-sample-app\ViewEnvironment\ViewEnvironment.csproj --configuration Release
-    - name: dotnet publish
-      run: |
-        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp 
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}    
