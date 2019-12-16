@@ -12,8 +12,10 @@ jobs:
       with:
         dotnet-version: 2.2.108 # Replace with specific dotnet core versio
     # dotnet build and publish
+    - name: change the working directory 
+       working-directory:\NET-sample-app\ViewEnvironment\
     - name: Build with dotnet
-      run: dotnet build D:/a/NET-sample-app/ViewEnvironment/ViewEnvironment.csproj --configuration Release
+      run: dotnet build --configuration Release
     - name: dotnet publish
       run: |
         dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp 
