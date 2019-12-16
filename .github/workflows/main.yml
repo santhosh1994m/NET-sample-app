@@ -14,7 +14,7 @@ jobs:
     # dotnet build and publish
     - name: Build with dotnet
       working-directory: ViewEnvironment
-      run: dotnet build --configuration Release
+      run: dotnet build D:\a\NET-sample-app\NET-sample-app\ViewEnvironment\ViewEnvironment.csproj --configuration Release
     - name: dotnet publish
       run: |
         dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp 
