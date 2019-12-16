@@ -1,0 +1,22 @@
+name: APPSERVERDEPLOYMENT
+on: [push]
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+    - name: 'Checkout Github Action' 
+      uses: actions/checkout@master
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: list out the files 
+      run: ls
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}    
+    - run: |
+        az webapp list --query "[?state=='Running']"
+    - uses: azure/webapps-deploy@v1
+      with: 
+        app-name: santhosh321
+        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
