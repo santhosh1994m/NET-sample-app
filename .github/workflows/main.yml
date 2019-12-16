@@ -7,10 +7,16 @@ jobs:
     steps:
     - name: 'Checkout Github Action' 
       uses: actions/checkout@master
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
-    - name: list out the files 
-      run: ls
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108 # Replace with specific dotnet core versio
+    # dotnet build and publish
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+    - name: dotnet publish
+      run: |
+        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp 
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}    
@@ -20,3 +26,4 @@ jobs:
       with: 
         app-name: santhosh321
         publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+        package: ${{env.DOTNET_ROOT}}/myapp
