@@ -12,6 +12,10 @@ jobs:
       with:
         dotnet-version: 2.2.108 # Replace with specific dotnet core versio
     # dotnet build and publish
+    - name: working directory
+       working-directory=ViewEnvironment
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
     - name: dotnet publish
       run: |
         dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp 
