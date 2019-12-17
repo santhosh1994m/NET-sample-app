@@ -15,6 +15,9 @@ cf install-plugin Diego-Enabler -r CF-Community
 
 Enable diego and start your app:cccc
 ```
+
+
+
 cf enable-diego environment
 cf start environment
 
