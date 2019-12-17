@@ -4,8 +4,8 @@ on:
     # Sequence of patterns matched against refs/heads
     branches:    
       - dev
- jobs:       
-  build-and-deploy-to-dev:
+jobs:       
+   build-and-deploy-to-dev:
     runs-on: windows-latest
     steps:
     - name: 'Checkout Github Action' 
