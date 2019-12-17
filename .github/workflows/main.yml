@@ -3,7 +3,7 @@ on:
   push:
     # Sequence of patterns matched against refs/heads
     branches:    
-       - dev
+       - qa
 jobs:
   build-and-deploy:
     if: github.event_name == 'push' && github.ref == 'master'
@@ -29,13 +29,13 @@ jobs:
         publish-profile: ${{ secrets.azureWebAppPublishProfile }}
           
   build-and-deploy-to-dev:
-    if: github.event_name == 'push' && github.ref == 'dev'
+    if: github.event_name == 'push' && github.ref == 'qa'
     runs-on: windows-latest
     steps:
     - name: 'Checkout Github Action' 
       uses: actions/checkout@master
       with:
-        ref: dev
+        ref: qa
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
