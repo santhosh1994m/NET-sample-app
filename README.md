@@ -17,6 +17,8 @@ Enable diego and start your app:
 ```
 cf enable-diego environment
 cf start environment
+
+
 ```
 
 If you're having this problem pushing the application:
