@@ -1,14 +1,12 @@
-name: deploytoserverqa
+name: deploytoservermaster
 on:
   push:
     # Sequence of patterns matched against refs/heads
     branches:    
     - 'master'
-    - 'qa'
 jobs:
   build-and-deploy:
     runs-on: windows-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     steps:
     - name: 'Checkout Github Action' 
       uses: actions/checkout@master
@@ -28,26 +26,3 @@ jobs:
       with: 
         app-name: santhosh321
         publish-profile: ${{ secrets.azureWebAppPublishProfile }}
-          
-  build-and-deploy-to-qa:
-    runs-on: windows-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/qa'
-    steps:
-    - name: 'Checkout Github Action' 
-      uses: actions/checkout@master
-      with:
-        ref: qa
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 2.2.108 # Replace with specific dotnet core versio
-    # dotnet build and publish
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}    
-    - run: |
-        az webapp list --query "[?state=='Running']"
-    - uses: azure/webapps-deploy@v1
-      with: 
-        app-name: santhosh321
-        publish-profile: ${{ secrets.azureWebAppPublishProfile }} 
