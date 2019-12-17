@@ -7,8 +7,8 @@ on:
     - 'qa'
 jobs:
   build-and-deploy:
-    if: github.event_name == 'push' && github.ref == 'master'
     runs-on: windows-latest
+    if: github.event_name == 'push' && github.ref == 'master'
     steps:
     - name: 'Checkout Github Action' 
       uses: actions/checkout@master
@@ -30,8 +30,8 @@ jobs:
         publish-profile: ${{ secrets.azureWebAppPublishProfile }}
           
   build-and-deploy-to-qa:
-    if: github.event_name == 'push' && github.ref == 'qa'
     runs-on: windows-latest
+    if: github.event_name == 'push' && github.ref == 'qa'
     steps:
     - name: 'Checkout Github Action' 
       uses: actions/checkout@master
