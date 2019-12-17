@@ -1,4 +1,4 @@
-name: deploytoserver
+name: deploytoservermaster
 on:
   push:
     # Sequence of patterns matched against refs/heads
@@ -7,6 +7,7 @@ on:
       - dev
 jobs:
   build-and-deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: windows-latest
     steps:
     - name: 'Checkout Github Action' 
@@ -27,8 +28,9 @@ jobs:
       with: 
         app-name: santhosh321
         publish-profile: ${{ secrets.azureWebAppPublishProfile }}
-        
+          
   build-and-deploy-to-dev:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
     runs-on: windows-latest
     steps:
     - name: 'Checkout Github Action' 
