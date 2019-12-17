@@ -10,7 +10,7 @@ If Diego is enabled by default on your CF deployment, you can omit the `--no-sta
 If it's not, or if you're not sure, you'll need to install the [Diego Enabler](https://github.com/cloudfoundry-incubator/diego-enabler) CLI plugin:
 ```
 cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org/
-cf install-plugin Diego-Enabler - r CF-Community
+cf install-plugin Diego-Enabler - r CF-Communityjnnjj
 ```
 
 Enable diego and start your app:
