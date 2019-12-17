@@ -1,9 +1,37 @@
-name: APPSERVERDEPLOYMENT
+name: Master
 on:
   push:
     # Sequence of patterns matched against refs/heads
     branches:    
       - master         # Push events on master branch
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+    - name: 'Checkout Github Action' 
+      uses: actions/checkout@master
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108 # Replace with specific dotnet core versio
+    # dotnet build and publish
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}    
+    - run: |
+        az webapp list --query "[?state=='Running']"
+    - uses: azure/webapps-deploy@v1
+      with: 
+        app-name: santhosh321
+        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+        
+---
+ name: Development
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
       - dev
 
 jobs:
@@ -26,4 +54,5 @@ jobs:
       with: 
         app-name: santhosh321
         publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+ 
      
