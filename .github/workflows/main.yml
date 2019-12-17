@@ -3,7 +3,7 @@ on:
   push:
     # Sequence of patterns matched against refs/heads
     branches:    
-    - 'qa'
+    - '*'
 jobs:
   build-and-deploy:
     if: github.event_name == 'push' && github.ref == 'master'
