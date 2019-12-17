@@ -13,7 +13,7 @@ cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org/
 cf install-plugin Diego-Enabler -r CF-Community
 ```
 
-Enable diego and start your app:
+Enable diego and start your app:cccc
 ```
 cf enable-diego environment
 cf start environment
