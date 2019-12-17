@@ -31,7 +31,7 @@ jobs:
           
   build-and-deploy-to-qa:
     runs-on: windows-latest
-    if: github.event_name == 'push' && github.ref == 'qa'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/qa'
     steps:
     - name: 'Checkout Github Action' 
       uses: actions/checkout@master
