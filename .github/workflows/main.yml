@@ -1,4 +1,4 @@
-name: deploytoservermaster
+name: deploytoserverqa
 on:
   push:
     # Sequence of patterns matched against refs/heads
@@ -7,8 +7,8 @@ on:
     - 'qa'
 jobs:
   build-and-deploy:
-    if: github.event_name == 'push' && github.ref == 'master'
     runs-on: windows-latest
+    if: github.event_name == 'push' && github.ref == 'master'
     steps:
     - name: 'Checkout Github Action' 
       uses: actions/checkout@master
@@ -29,9 +29,9 @@ jobs:
         app-name: santhosh321
         publish-profile: ${{ secrets.azureWebAppPublishProfile }}
           
-  build-and-deploy-to-dev:
-    if: github.event_name == 'push' && github.ref == 'qa'
+  build-and-deploy-to-qa:
     runs-on: windows-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/qa'
     steps:
     - name: 'Checkout Github Action' 
       uses: actions/checkout@master
@@ -50,6 +50,4 @@ jobs:
     - uses: azure/webapps-deploy@v1
       with: 
         app-name: santhosh321
-        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
- 
-     
+        publish-profile: ${{ secrets.azureWebAppPublishProfile }} 
